@@ -39,7 +39,7 @@ captcha_module: 2captcha     # Supported services:
                             # - '2captcha': Primary service
                             # - 'anticaptcha': Alternative service
 
-two_captcha_api_key: ""     # API authentication key for 2captcha service
+two_captcha_api_key: "5f54781bb87b6edd8535521e4168a22c"     # API authentication key for 2captcha service
 anti_captcha_api_key: ""    # API authentication key for anticaptcha service
 
 # ======================
@@ -62,7 +62,8 @@ imap_settings:
   gmail.com: imap.gmail.com          # Google Mail - SSL required
   yahoo.com: imap.mail.yahoo.com     # Yahoo Mail - SSL required
   icloud.com: imap.mail.me.com       # Apple iCloud - 2FA may be required
-
+  tourzy.us: imap.bizflycloud.vn
+  veer.vn: mail.veer.vn
   # Regional Email Services
   mail.ru: imap.mail.ru              # Mail.ru - Popular in CIS regions
 

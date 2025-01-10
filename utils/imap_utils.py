@@ -155,15 +155,21 @@ class LinkExtractor:
             imap_server: str,
             email: str,
             password: str,
-            max_attempts: int = 8,
-            delay_seconds: int = 5,
+            max_attempts: int = 20,
+            delay_seconds: int = 90,
     ):
         self.imap_server = imap_server
         self.email = email
         self.password = password
         self.max_attempts = max_attempts
         self.delay_seconds = delay_seconds
-        self.link_pattern = r"https://www\.aeropres\.in/chromeapi/dawn/v1/user/verifylink\?key=[a-f0-9-]+" if mode == "verify" else r"https://u31952478\.ct\.sendgrid\.net/ls/click\?upn=.+?(?=><button|\"|\s|$)"
+        
+        # Adjusted link pattern for the new URL format
+        self.link_pattern = r"https://www\.aeropres\.in/chromeapi/dawn/v1/userverify/verifyconfirm\?key=[a-f0-9-]+"
+
+        if mode == "re-verify":
+            # You can add other patterns if needed for re-verify mode
+            self.link_pattern = r"https://u31952478\.ct\.sendgrid\.net/ls/click\?upn=[^\"&\s]+"
 
     async def extract_link(self, proxy: Optional[Proxy] = None) -> OperationResult:
         logger.info(f"Account: {self.email} | Checking email for link...")
