@@ -7,7 +7,6 @@ from aiocsv import AsyncWriter
 from models import ModuleType, OperationResult, StatisticData
 
 
-
 class FileOperations:
     def __init__(self, base_path: str = "./results"):
         self.base_path = Path(base_path)

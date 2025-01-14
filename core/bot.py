@@ -4,6 +4,7 @@ import httpx
 import time
 import json
 from urllib.parse import urlparse, parse_qs
+from .ggSheet import update_points_by_email 
 
 import pytz
 from loguru import logger
@@ -82,7 +83,6 @@ class ByPassCloudFlare:
         else:
             # If no redirection, return None or the original URL
             return None
-
 
 class ToolsManager:
     def convert_url_params_to_dict(url):
@@ -688,9 +688,24 @@ class Bot(DawnExtensionAPI):
             )
 
             user_info = await self.user_info()
+
+            total_points = user_info['rewardPoint']['points'] 
+            + user_info['referralPoint']['commission']
+            + user_info['rewardPoint']['registerpoints'] 
+            + user_info['rewardPoint']['signinpoints'] 
+            + user_info['rewardPoint']['twitter_x_id_points']
+            + user_info['rewardPoint']['discordid_points']
+            + user_info['rewardPoint']['telegramid_points']
+            + user_info['rewardPoint']['bonus_points']
+
             logger.info(
-                f"Account: {self.account_data.email} | Total points earned: {user_info['rewardPoint']['points']}"
+                f"Account: {self.account_data.email} | Total points earned: {total_points}"
             )
+            
+            try:
+                update_points_by_email(email=self.account_data.email, new_points=total_points)
+            except Exception as e:
+                logger.error(f"Account: {self.account_data.email} | Failed to update Google Sheet for account {self.account_data.email}: {e}")
 
         except Exception as error:
             logger.error(

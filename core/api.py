@@ -263,7 +263,6 @@ class DawnExtensionAPI:
 
         return response["data"]
 
-
     async def resend_verify_link(self, puzzle_id: str, answer: str) -> dict:
         params = {
             'appid': self.account_data.appid,
