@@ -701,9 +701,12 @@ class Bot(DawnExtensionAPI):
             logger.info(
                 f"Account: {self.account_data.email} | Total points earned: {total_points}"
             )
-            
+
             try:
-                update_points_by_email(email=self.account_data.email, new_points=total_points)
+                await update_points_by_email(email=self.account_data.email, new_points=total_points)
+                logger.info(
+                f"Account: {self.account_data.email} | Total points updated"
+            )
             except Exception as e:
                 logger.error(f"Account: {self.account_data.email} | Failed to update Google Sheet for account {self.account_data.email}: {e}")
 

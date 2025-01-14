@@ -39,7 +39,7 @@ captcha_module: 2captcha     # Supported services:
                             # - '2captcha': Primary service
                             # - 'anticaptcha': Alternative service
 
-two_captcha_api_key: "5f54781bb87b6edd8535521e4168a22c"     # API authentication key for 2captcha service
+two_captcha_api_key: "ea1524eab3568ed800b37db33e929489"     # API authentication key for 2captcha service
 anti_captcha_api_key: ""    # API authentication key for anticaptcha service
 
 # ======================
